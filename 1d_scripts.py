@@ -95,12 +95,13 @@
 # 0-10-21(18.02.2019) Changed (Materials) Mats Showcase and Colorize - old format string
 # 0-10-22(31.07.2019) Fixed (Materials) mats only uncludes "." in name
 # 0-10-23(31.06.2026) Modified "corner_corner" and "corner_extend" functions for working with UI.
+# 0-10-24(17.09.2026) Fixed "corner_corner" and "corner_extend" calling if not UV created
 
 
 bl_info = {
     "name": "1D_Scripts",
     "author": "Alexander Nedovizin, Paul Kotelevets aka 1D_Inc (concept design), Nikitron, Nikita Akimov",
-    "version": (0, 10, 23),
+    "version": (0, 10, 24),
     "blender": (2, 7, 9),
     "location": "View3D > Toolbar",
     "category": "Mesh"
@@ -10308,7 +10309,8 @@ class CornerOperator(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object is not None and context.active_object.type == 'MESH'
+        return context.active_object is not None and context.active_object.type == 'MESH' \
+            and context.object.data.uv_textures.active
 
     def execute(self, context):
         config = bpy.context.window_manager.paul_manager
