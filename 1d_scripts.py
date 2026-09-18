@@ -7234,14 +7234,14 @@ def corner_corner(active, to_active, correct_uv):
                 if active:
                     # me.vertices[loop1[i1]].co = zz1
                     bm.verts[loop1[i1]].co = zz1
-                    if correct_uv:
+                    if active_uv_layer and correct_uv:
                         for pair in v1_v2_uv_pairs:
                             v1_v2_uv_vec = pair[1][active_uv_layer].uv - pair[0][active_uv_layer].uv
                             pair[1][active_uv_layer].uv = pair[0][active_uv_layer].uv + v1_v2_uv_vec * k_uv_active
                 else:
                     # me.vertices[loop2[i2]].co = zz2
                     bm.verts[loop2[i2]].co = zz2
-                    if correct_uv:
+                    if active_uv_layer and correct_uv:
                         for pair in v3_v4_uv_pairs:
                             v3_v4_uv_vec = pair[1][active_uv_layer].uv - pair[0][active_uv_layer].uv
                             pair[1][active_uv_layer].uv = pair[0][active_uv_layer].uv + v3_v4_uv_vec * k_uv_selected
@@ -7249,27 +7249,27 @@ def corner_corner(active, to_active, correct_uv):
                 if active:
                     # me.vertices[loop2[i2]].co = zz2
                     bm.verts[loop2[i2]].co = zz2
-                    if correct_uv:
+                    if active_uv_layer and correct_uv:
                         for pair in v3_v4_uv_pairs:
                             v3_v4_uv_vec = pair[1][active_uv_layer].uv - pair[0][active_uv_layer].uv
                             pair[1][active_uv_layer].uv = pair[0][active_uv_layer].uv + v3_v4_uv_vec * k_uv_selected
                 else:
                     # me.vertices[loop1[i1]].co = zz1
                     bm.verts[loop1[i1]].co = zz1
-                    if correct_uv:
+                    if active_uv_layer and correct_uv:
                         for pair in v1_v2_uv_pairs:
                             v1_v2_uv_vec = pair[1][active_uv_layer].uv - pair[0][active_uv_layer].uv
                             pair[1][active_uv_layer].uv = pair[0][active_uv_layer].uv + v1_v2_uv_vec * k_uv_active
         else:
             # me.vertices[loop1[i1]].co = zz1
             bm.verts[loop1[i1]].co = zz1
-            if correct_uv:
+            if active_uv_layer and correct_uv:
                 for pair in v1_v2_uv_pairs:
                     v1_v2_uv_vec = pair[1][active_uv_layer].uv - pair[0][active_uv_layer].uv
                     pair[1][active_uv_layer].uv = pair[0][active_uv_layer].uv + v1_v2_uv_vec * k_uv_active
             # me.vertices[loop2[i2]].co = zz2
             bm.verts[loop2[i2]].co = zz2
-            if correct_uv:
+            if active_uv_layer and correct_uv:
                 for pair in v3_v4_uv_pairs:
                     v3_v4_uv_vec = pair[1][active_uv_layer].uv - pair[0][active_uv_layer].uv
                     pair[1][active_uv_layer].uv = pair[0][active_uv_layer].uv + v3_v4_uv_vec * k_uv_selected
@@ -7338,7 +7338,7 @@ def corner_extend(active, to_active, correct_uv):
                 if active:
                     # me.vertices[loop1[i1]].co = p_cross[0]
                     bm.verts[loop1[i1]].co = p_cross[0]
-                    if correct_uv:
+                    if active_uv_layer and correct_uv:
                         cur_active_edge_length = (bm.verts[loop1[i1]].co - bm.verts[loop1[i1_]].co).length
                         k_uv_active = cur_active_edge_length / old_active_edge_length
                         for pair in v1_v2_uv_pairs:
@@ -7348,7 +7348,7 @@ def corner_extend(active, to_active, correct_uv):
                 else:
                     # me.vertices[loop2[i2]].co = p_cross[1]
                     bm.verts[loop2[i2]].co = p_cross[1]
-                    if correct_uv:
+                    if active_uv_layer and correct_uv:
                         cur_selected_edge_length = (bm.verts[loop2[i1]].co - bm.verts[loop2[i1_]].co).length
                         k_uv_selected = cur_selected_edge_length / old_selected_edge_length
                         for pair in v3_v4_uv_pairs:
@@ -7358,7 +7358,7 @@ def corner_extend(active, to_active, correct_uv):
                 if active:
                     # me.vertices[loop2[i2]].co = p_cross[1]
                     bm.verts[loop2[i2]].co = p_cross[1]
-                    if correct_uv:
+                    if active_uv_layer and correct_uv:
                         cur_selected_edge_length = (bm.verts[loop2[i1]].co - bm.verts[loop2[i1_]].co).length
                         k_uv_selected = cur_selected_edge_length / old_selected_edge_length
                         for pair in v3_v4_uv_pairs:
@@ -7368,7 +7368,7 @@ def corner_extend(active, to_active, correct_uv):
                 else:
                     # me.vertices[loop1[i1]].co = p_cross[0]
                     bm.verts[loop1[i1]].co = p_cross[0]
-                    if correct_uv:
+                    if active_uv_layer and correct_uv:
                         cur_active_edge_length = (bm.verts[loop1[i1]].co - bm.verts[loop1[i1_]].co).length
                         k_uv_active = cur_active_edge_length / old_active_edge_length
                         for pair in v1_v2_uv_pairs:
@@ -7378,7 +7378,7 @@ def corner_extend(active, to_active, correct_uv):
         else:
             # me.vertices[loop1[i1]].co = p_cross[0]
             bm.verts[loop1[i1]].co = p_cross[0]
-            if correct_uv:
+            if active_uv_layer and correct_uv:
                 cur_active_edge_length = (bm.verts[loop1[i1]].co - bm.verts[loop1[i1_]].co).length
                 k_uv_active = cur_active_edge_length / old_active_edge_length
                 for pair in v1_v2_uv_pairs:
@@ -7386,7 +7386,7 @@ def corner_extend(active, to_active, correct_uv):
                     pair[1][active_uv_layer].uv = pair[0][active_uv_layer].uv + v1_v2_uv_vec * k_uv_active
             # me.vertices[loop2[i2]].co = p_cross[1]
             bm.verts[loop2[i2]].co = p_cross[1]
-            if correct_uv:
+            if active_uv_layer and correct_uv:
                 cur_selected_edge_length = (bm.verts[loop2[i1]].co - bm.verts[loop2[i1_]].co).length
                 k_uv_selected = cur_selected_edge_length / old_selected_edge_length
                 for pair in v3_v4_uv_pairs:
@@ -10309,8 +10309,7 @@ class CornerOperator(bpy.types.Operator):
 
     @classmethod
     def poll(cls, context):
-        return context.active_object is not None and context.active_object.type == 'MESH' \
-            and context.object.data.uv_textures.active
+        return context.active_object is not None and context.active_object.type == 'MESH'
 
     def execute(self, context):
         config = bpy.context.window_manager.paul_manager
